@@ -6,11 +6,12 @@ int max;
 
 void *mythread(void *arg) {
   char *letter = arg;
+  // Se crea una variable local counter para cada hilo:
   int counter = 0;
-  int i; // stack (private per thread)
+  int i;
   printf("%s: begin [addr of i: %p]\n", letter, &i);
   for (i = 0; i < max; i++) {
-	counter = counter + 1; // shared: only one
+	counter = counter + 1;
   }
   printf("%s: done\n", letter);
   return (void *)(size_t)counter;
@@ -26,12 +27,14 @@ int main(int argc, char *argv[]) {
   pthread_t p1, p2;
   int counter1 = 0;
   int counter2 = 0;
+  // Se inicia el conteo para cada hilo:
   printf("main: begin [counter1 = %d][%p] [counter2 = %d][%p]\n", counter1, &counter1, counter2, &counter2);
   pthread_create(&p1, NULL, mythread, "A");
   pthread_create(&p2, NULL, mythread, "B");
   // join waits for the threads to finish
   pthread_join(p1, (void **)&counter1);
   pthread_join(p2, (void **)&counter2);
+  // Se acumulan los resultados:
   int total_counter = counter1 + counter2;
   printf("main: done\n [total_counter: %d]\n [should: %d]\n",
 	  total_counter, max*2);
