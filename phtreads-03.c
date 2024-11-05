@@ -43,4 +43,3 @@ int main(int argc, char *argv[]) {
 	  counter, max*2);
   return 0;
 }
-
