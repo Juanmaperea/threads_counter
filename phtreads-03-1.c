@@ -1,3 +1,9 @@
+// Integrantes:
+// Ricardo Erazo Muñoz - 2242117.
+// Juan Manuel Perea Coronado - 1926462.
+// Andrés Mauricio Ramirez - 1926987.
+// Daniel Cárdenas Ortiz - 2024076.
+
 /*
  * Este programa ilustra el problema de concurrencia que se presenta al momento
  * que dos hilos intentan modificar una variable compartida.
